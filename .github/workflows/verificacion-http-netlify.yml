@@ -1,4 +1,4 @@
-name: Verificacion HTTP Netlify
+name: Verificacion HTTP Produccion
 
 on:
   push:
@@ -14,19 +14,27 @@ jobs:
   verificar:
     runs-on: ubuntu-latest
     steps:
-      - name: Verificar portada HTTP 200 y contenido final
+      - name: Verificar portada HTTP 200 y loader de produccion
         run: |
           set -euo pipefail
-          BASE="https://fundamentos-administracion-gonzalez.netlify.app"
+          BASE="https://fundamentos-administracion-gonzalez-five.vercel.app"
           curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$BASE/" -o /tmp/index.html
           grep -Fq "Fundamentos de la Administración" /tmp/index.html
-          grep -Fq "url:location.href" /tmp/index.html
-          grep -Fq "The contingency approach argues that the best management style depends on the situation." /tmp/index.html
+          grep -Fq "raw.githubusercontent.com/isaacglez-cmd/fundamentos-administracion-gonzalez/main/index.html" /tmp/index.html
+
+      - name: Verificar contenido final en main
+        run: |
+          set -euo pipefail
+          RAW="https://raw.githubusercontent.com/isaacglez-cmd/fundamentos-administracion-gonzalez/main/index.html"
+          curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$RAW" -o /tmp/full-index.html
+          grep -Fq "url:location.href" /tmp/full-index.html
+          grep -Fq "The contingency approach argues that the best management style depends on the situation." /tmp/full-index.html
+          grep -Fq "Edición Digital Interactiva 2026" /tmp/full-index.html
 
       - name: Verificar manifiesto PWA
         run: |
           set -euo pipefail
-          BASE="https://fundamentos-administracion-gonzalez.netlify.app"
+          BASE="https://fundamentos-administracion-gonzalez-five.vercel.app"
           curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$BASE/manifest.webmanifest" -o /tmp/manifest.webmanifest
           grep -Fq '"display": "standalone"' /tmp/manifest.webmanifest
           grep -Fq '"icon-192.png"' /tmp/manifest.webmanifest
@@ -35,15 +43,15 @@ jobs:
       - name: Verificar service worker
         run: |
           set -euo pipefail
-          BASE="https://fundamentos-administracion-gonzalez.netlify.app"
+          BASE="https://fundamentos-administracion-gonzalez-five.vercel.app"
           curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$BASE/sw.js" -o /tmp/sw.js
-          grep -Fq "fundamentos-adm-2026-v2" /tmp/sw.js
+          grep -Fq "fundamentos-adm-2026-v3" /tmp/sw.js
           grep -Fq "./manifest.webmanifest" /tmp/sw.js
 
       - name: Verificar iconos PWA
         run: |
           set -euo pipefail
-          BASE="https://fundamentos-administracion-gonzalez.netlify.app"
+          BASE="https://fundamentos-administracion-gonzalez-five.vercel.app"
           for f in icon-192.png icon-512.png; do
             curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$BASE/$f" -o "/tmp/$f"
             test -s "/tmp/$f"
@@ -51,4 +59,4 @@ jobs:
           done
 
       - name: Resumen
-        run: echo "HTTP externo, PWA y versión final verificados correctamente."
+        run: echo "Produccion HTTP, PWA y contenido final verificados correctamente."
