@@ -1,9 +1,6 @@
 name: Unpack PWA
 
 on:
-  push:
-    branches:
-      - ejercicios-interactivos-2026
   pull_request:
     branches:
       - main
@@ -13,7 +10,7 @@ permissions:
 
 jobs:
   unpack:
-    if: ${{ github.event_name == 'pull_request' || !contains(github.event.head_commit.message, '[skip ci]') }}
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout feature branch
@@ -25,7 +22,7 @@ jobs:
       - name: Rebuild and verify package
         shell: bash
         run: |
-          cat .upload/part*.txt > /tmp/pwa.b64
+          cat .upload/part1.txt .upload/part2a.txt .upload/part2b.txt .upload/part3.txt .upload/part4.txt > /tmp/pwa.b64
           base64 -d /tmp/pwa.b64 > /tmp/pwa.zip
           unzip -t /tmp/pwa.zip
           unzip -o /tmp/pwa.zip -d .
