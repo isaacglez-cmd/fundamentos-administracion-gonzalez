@@ -4,18 +4,22 @@ on:
   push:
     branches:
       - ejercicios-interactivos-2026
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   unpack:
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    if: ${{ github.event_name == 'pull_request' || !contains(github.event.head_commit.message, '[skip ci]') }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout feature branch
         uses: actions/checkout@v4
         with:
+          ref: ejercicios-interactivos-2026
           fetch-depth: 0
 
       - name: Rebuild and verify package
@@ -32,15 +36,12 @@ jobs:
           test -f icon-512.png
           test -f control_calidad.txt
 
-      - name: Finalize branch
+      - name: Commit final PWA files
         shell: bash
         run: |
           rm -rf .upload
-          rm -f .github/workflows/unpack-pwa.yml
-          rmdir .github/workflows 2>/dev/null || true
-          rmdir .github 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "feat: publish interactive administration PWA [skip ci]"
-          git push origin HEAD
+          git push origin HEAD:ejercicios-interactivos-2026
