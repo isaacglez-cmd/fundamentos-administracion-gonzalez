@@ -1,0 +1,46 @@
+name: Unpack PWA
+
+on:
+  push:
+    branches:
+      - ejercicios-interactivos-2026
+
+permissions:
+  contents: write
+
+jobs:
+  unpack:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebuild and verify package
+        shell: bash
+        run: |
+          cat .upload/part*.txt > /tmp/pwa.b64
+          base64 -d /tmp/pwa.b64 > /tmp/pwa.zip
+          unzip -t /tmp/pwa.zip
+          unzip -o /tmp/pwa.zip -d .
+          test -f index.html
+          test -f manifest.webmanifest
+          test -f sw.js
+          test -f icon-192.png
+          test -f icon-512.png
+          test -f control_calidad.txt
+
+      - name: Finalize branch
+        shell: bash
+        run: |
+          rm -rf .upload
+          rm -f .github/workflows/unpack-pwa.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat: publish interactive administration PWA [skip ci]"
+          git push origin HEAD
