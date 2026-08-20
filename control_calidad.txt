@@ -1,0 +1,6 @@
+data-note: 50
+data-task: 50
+chapter workbooks: 10
+integrative fields: 10
+single storage prefix: fadm_
+PWA: manifest + service worker + icons
