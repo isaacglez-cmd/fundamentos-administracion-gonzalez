@@ -1,0 +1,51 @@
+name: Verificacion HTTP Netlify
+
+on:
+  push:
+    branches:
+      - verificacion-http-externa
+      - main
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verificar portada HTTP 200 y contenido final
+        run: |
+          set -euo pipefail
+          BASE="https://fundamentos-administracion-gonzalez.netlify.app"
+          curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$BASE/" -o /tmp/index.html
+          grep -Fq "Fundamentos de la Administración" /tmp/index.html
+          grep -Fq "url:location.href" /tmp/index.html
+          grep -Fq "The contingency approach argues that the best management style depends on the situation." /tmp/index.html
+
+      - name: Verificar manifiesto PWA
+        run: |
+          set -euo pipefail
+          BASE="https://fundamentos-administracion-gonzalez.netlify.app"
+          curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$BASE/manifest.webmanifest" -o /tmp/manifest.webmanifest
+          grep -Fq '"display": "standalone"' /tmp/manifest.webmanifest
+          grep -Fq '"icon-192.png"' /tmp/manifest.webmanifest
+          grep -Fq '"icon-512.png"' /tmp/manifest.webmanifest
+
+      - name: Verificar service worker
+        run: |
+          set -euo pipefail
+          BASE="https://fundamentos-administracion-gonzalez.netlify.app"
+          curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$BASE/sw.js" -o /tmp/sw.js
+          grep -Fq "fundamentos-adm-2026-v2" /tmp/sw.js
+          grep -Fq "./manifest.webmanifest" /tmp/sw.js
+
+      - name: Verificar iconos PWA
+        run: |
+          set -euo pipefail
+          BASE="https://fundamentos-administracion-gonzalez.netlify.app"
+          for f in icon-192.png icon-512.png; do
+            curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$BASE/$f" -o "/tmp/$f"
+            test -s "/tmp/$f"
+            file "/tmp/$f" | grep -Fq "PNG image data"
+          done
+
+      - name: Resumen
+        run: echo "HTTP externo, PWA y versión final verificados correctamente."
