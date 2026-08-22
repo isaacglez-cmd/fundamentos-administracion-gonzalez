@@ -1,0 +1,29 @@
+name: Export current main site
+
+on:
+  push:
+    branches:
+      - fundamentos-final-2026
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout production main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Package production site files
+        uses: actions/upload-artifact@v4
+        with:
+          name: fundamentos-main-site
+          path: |
+            index.html
+            manifest.webmanifest
+            sw.js
+            icon-192.png
+            icon-512.png
+            control_calidad.txt
+          if-no-files-found: error
+          retention-days: 1
