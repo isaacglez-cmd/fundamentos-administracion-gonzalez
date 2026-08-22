@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - fundamentos-final-2026
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
