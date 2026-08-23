@@ -1,6 +1,46 @@
-data-note: 50
-data-task: 50
-chapter workbooks: 10
-integrative fields: 10
-single storage prefix: fadm_
-PWA: manifest + service worker + icons
+FUNDAMENTOS DE LA ADMINISTRACION · CONTROL DE CALIDAD 2026
+
+Estructura interactiva
+- data-note: 50 campos, 50 claves unicas, sin duplicados
+- data-task: 50 actividades, 50 claves unicas, sin duplicados
+- cuadernos interactivos: 10, uno por capitulo (1–10)
+- actividades integradoras: 10 campos + 10 tareas
+- botones de cierre de capitulo: 10
+- autoevaluaciones: 30 reactivos, 3 por capitulo
+- flashcards EAP: 10
+
+Persistencia y progreso
+- almacenamiento local: localStorage
+- prefijo unico: fadm_
+- notas, actividades, capitulos completados, modo oscuro y tamano de texto se restauran desde el navegador
+- progreso general calculado a partir de capitulos, actividades y respuestas desarrolladas
+
+PWA
+- manifest.webmanifest presente y display=standalone
+- service worker presente y registrado desde index.html
+- icon-192.png validado: 192x192 PNG
+- icon-512.png validado: 512x512 PNG
+- JavaScript inline validado sintacticamente
+
+Contenido y correcciones verificadas
+- Edicion Digital Interactiva 2026 presente
+- boton compartir incluye url:location.href
+- correccion EAP del capitulo 2 presente
+- enlaces externos revisados sin esquemas HTTP/HTTPS duplicados
+- seccion 11 de actividades integradoras presente
+
+Produccion
+- URL: https://fundamentos-administracion-gonzalez-five.vercel.app
+- estado Vercel verificado: READY
+- health check de produccion valida portada, contenido servido desde main, manifiesto, service worker e iconos
+- no se detectaron errores de runtime en Vercel en la revision de los ultimos 7 dias
+
+Flujo de calidad GitHub
+- pull_request: valida directamente los archivos de la revision propuesta
+- push a main / workflow_dispatch: valida archivos y ejecuta health check de produccion
+- se evita el falso positivo anterior en el que un PR podia pasar solo porque la produccion previa seguia sana
+
+Fuente de verdad
+- repositorio: isaacglez-cmd/fundamentos-administracion-gonzalez
+- rama de produccion: main
+- los seis archivos PWA de main fueron exportados y comparados por hash con la copia auditada
