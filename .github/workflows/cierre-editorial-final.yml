@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   corregir-y-validar:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -43,10 +44,6 @@ jobs:
           p.write_text(s, encoding='utf-8')
           PY
 
-      - name: Renombrar health check de producción
-        run: |
-          git mv .github/workflows/verificacion-http-netlify.yml .github/workflows/verificacion-pwa-produccion.yml
-
       - name: Validar integridad completa
         run: |
           python - <<'PY'
@@ -68,19 +65,17 @@ jobs:
           assert 'Figura 4.1 · Criterios SMART de un objetivo.' in s
           assert 'Figura 8.1 · Etapas de desarrollo de un equipo según Tuckman.' in s
           assert '<h3>7.1 Liderazgo vs. administración</h3>' in s
-          assert all(f"id=\'cap{i}\'" in s for i in range(1,11))
+          assert all(f"id='cap{i}'" in s for i in range(1,11))
           assert all(f'id="cuaderno-cap{i}"' in s for i in range(1,11))
           assert 'id="integradoras"' in s
           q = re.search(r'<script id="quizData" type="application/json">(.*?)</script>', s, re.S)
           f = re.search(r'<script id="flashData" type="application/json">(.*?)</script>', s, re.S)
-          quizzes = json.loads(q.group(1)); flash = json.loads(f.group(1))
-          assert len(quizzes) == 30
-          assert len(flash) == 10
+          assert len(json.loads(q.group(1))) == 30
+          assert len(json.loads(f.group(1))) == 10
           assert 'url:location.href' in s
           assert "navigator.serviceWorker.register('./sw.js')" in s
           assert "localStorage.setItem('fadm_'" in s
-          m = Path('manifest.webmanifest').read_text(encoding='utf-8')
-          assert '"display": "standalone"' in m
+          assert '"display": "standalone"' in Path('manifest.webmanifest').read_text(encoding='utf-8')
           sw = Path('sw.js').read_text(encoding='utf-8')
           assert './manifest.webmanifest' in sw and './icon-192.png' in sw and './icon-512.png' in sw
           print('OK: 10 capítulos, 30 quizzes, 10 flashcards, PWA e integridad editorial validadas')
@@ -91,12 +86,11 @@ jobs:
           file icon-192.png | grep -Fq 'PNG image data'
           file icon-512.png | grep -Fq 'PNG image data'
 
-      - name: Guardar correcciones y retirar workflow temporal
+      - name: Guardar correcciones
         run: |
-          rm .github/workflows/cierre-editorial-final.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
+          git add index.html
           git diff --cached --check
-          git commit -m 'fix: cerrar residuos editoriales y monitoreo de producción'
+          git commit -m 'fix: cerrar residuos editoriales del libro digital'
           git push origin HEAD:cierre-editorial-final-2026
