@@ -24,7 +24,9 @@ PWA
 
 Contenido y correcciones verificadas
 - Edicion Digital Interactiva 2026 presente
-- boton compartir incluye url:location.href
+- Edicion independiente 2026 y Material academico independiente presentes
+- sin referencias UACH/FEI en index.html ni manifest.webmanifest
+- boton compartir incluye url: location.href
 - correccion EAP del capitulo 2 presente
 - enlaces externos revisados sin esquemas HTTP/HTTPS duplicados
 - seccion 11 de actividades integradoras presente
@@ -32,10 +34,18 @@ Contenido y correcciones verificadas
 Produccion
 - URL: https://fundamentos-administracion-gonzalez-five.vercel.app
 - estado Vercel verificado: READY
-- health check de produccion valida portada, contenido servido desde main, manifiesto, service worker e iconos
-- no se detectaron errores de runtime en Vercel en la revision de los ultimos 7 dias
+- deployment Vercel: dpl_GCTFeK2YaYSmJ8sL4KjjBG9BVtGh
+- index.html, manifest, service worker e iconos 192/512 coinciden byte por byte con la copia final
+- navegador real conectado: titulo, 10 capitulos, 16 anclas sin destinos rotos y cero errores propios de la aplicacion
+- quiz del capitulo 1: 3/3, resultado Dominio excelente
+- flashcards: 10 tarjetas; navegacion y reverso en espanol verificados
+- persistencia: nota, actividad y capitulo completado restaurados despues de recargar
+- Netlify: deploy 6a91e9105c482a30a481f395 omitido por creditos de cuenta excedidos; el alias Netlify no esta disponible
 
 Flujo de calidad GitHub
+- PR de cierre: #10
+- commit fusionado en main: bdce24028e334d3aee180716d26706010dca475c
+- workflow Verificacion PWA y Produccion: aprobado sobre el commit revisado
 - pull_request: valida directamente los archivos de la revision propuesta
 - push a main / workflow_dispatch: valida archivos y ejecuta health check de produccion
 - se evita el falso positivo anterior en el que un PR podia pasar solo porque la produccion previa seguia sana
@@ -43,4 +53,4 @@ Flujo de calidad GitHub
 Fuente de verdad
 - repositorio: isaacglez-cmd/fundamentos-administracion-gonzalez
 - rama de produccion: main
-- los seis archivos PWA de main fueron exportados y comparados por hash con la copia auditada
+- los cinco archivos publicos del PWA fueron comparados por hash con la produccion Vercel
