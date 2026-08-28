@@ -22,12 +22,12 @@ jobs:
           set -euo pipefail
           test -s index.html
           grep -Fq "Edición Digital Interactiva 2026" index.html
-          grep -Fq "url:location.href" index.html
+          grep -Fq "url: location.href" index.html
           grep -Fq "The contingency approach argues that the best management style depends on the situation." index.html
           grep -Fq 'id="cuaderno-cap10"' index.html
           grep -Fq 'id="integradoras"' index.html
-          grep -Fq "localStorage.setItem('fadm_'" index.html
-          grep -Fq "navigator.serviceWorker.register('./sw.js')" index.html
+          grep -Fq 'localStorage.setItem("fadm_"' index.html
+          grep -Fq 'navigator.serviceWorker.register("./sw.js")' index.html
           grep -Fq "Figura 4.1 · Criterios SMART de un objetivo." index.html
           grep -Fq "Figura 8.1 · Etapas de desarrollo de un equipo según Tuckman." index.html
           grep -Fq "<h3>7.1 Liderazgo vs. administración</h3>" index.html
@@ -37,6 +37,9 @@ jobs:
           ! grep -Fq "<p>proyecto simultáneamente</p>" index.html
           ! grep -Fq "<p>responsabilidad compartida</p>" index.html
           ! grep -Fq "<p>estratégicos</p>" index.html
+          ! grep -Eiq 'UACH|Universidad Autónoma de Chihuahua|Facultad de Economía Internacional' index.html manifest.webmanifest
+          grep -Fq "Edición independiente 2026" index.html
+          grep -Fq "Material académico independiente" index.html
 
       - name: Verificar datos interactivos
         run: |
@@ -63,10 +66,10 @@ jobs:
         run: |
           set -euo pipefail
           test -s sw.js
-          grep -Fq "const CACHE='fundamentos-adm-2026-v" sw.js
-          grep -Fq "./manifest.webmanifest" sw.js
-          grep -Fq "./icon-192.png" sw.js
-          grep -Fq "./icon-512.png" sw.js
+          grep -Fq 'const CACHE = "fundamentos-adm-2026-v3"' sw.js
+          grep -Fq '"./manifest.webmanifest"' sw.js
+          grep -Fq '"./icon-192.png"' sw.js
+          grep -Fq '"./icon-512.png"' sw.js
 
       - name: Verificar iconos PWA locales
         run: |
@@ -94,12 +97,14 @@ jobs:
           set -euo pipefail
           RAW="https://raw.githubusercontent.com/isaacglez-cmd/fundamentos-administracion-gonzalez/main/index.html"
           curl --fail --silent --show-error --location --retry 5 --retry-delay 5 --max-time 30 "$RAW" -o /tmp/full-index.html
-          grep -Fq "url:location.href" /tmp/full-index.html
+          grep -Fq "url: location.href" /tmp/full-index.html
           grep -Fq "Edición Digital Interactiva 2026" /tmp/full-index.html
           grep -Fq 'id="cuaderno-cap10"' /tmp/full-index.html
           grep -Fq 'id="integradoras"' /tmp/full-index.html
           grep -Fq "Figura 4.1 · Criterios SMART de un objetivo." /tmp/full-index.html
           grep -Fq "Figura 8.1 · Etapas de desarrollo de un equipo según Tuckman." /tmp/full-index.html
+          ! grep -Eiq 'UACH|Universidad Autónoma de Chihuahua|Facultad de Economía Internacional' /tmp/full-index.html
+          grep -Fq "Edición independiente 2026" /tmp/full-index.html
 
       - name: Verificar manifiesto PWA de produccion
         run: |
