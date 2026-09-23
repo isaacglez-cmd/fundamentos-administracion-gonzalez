@@ -1,0 +1,32 @@
+name: Deploy autoria a Vercel
+
+on:
+  push:
+    branches:
+      - deploy-autoria-produccion-2026
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verificar autoría
+        run: |
+          grep -Fq 'Isaac González Granados y Olinda Ornelas Benítez' index.html
+          grep -Fq 'name="author" content="Isaac González Granados y Olinda Ornelas Benítez"' index.html
+
+      - name: Preparar vínculo Vercel
+        run: |
+          mkdir -p .vercel
+          printf '%s\n' '{"orgId":"team_rHvMgsungfo61zVkbpmoEZty","projectId":"prj_uPdwQ6YZ10IDf2tbwOy9t0XkQ7Yo"}' > .vercel/project.json
+
+      - name: Desplegar a producción
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          test -n "$VERCEL_TOKEN"
+          npx --yes vercel@latest deploy --prod --yes --token="$VERCEL_TOKEN"
