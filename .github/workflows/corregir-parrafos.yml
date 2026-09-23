@@ -1,0 +1,83 @@
+name: Corregir cortes de parrafo
+
+on:
+  push:
+    branches:
+      - correccion-parrafos-movil-2026
+
+permissions:
+  contents: write
+
+jobs:
+  corregir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: correccion-parrafos-movil-2026
+          fetch-depth: 0
+
+      - name: Unir párrafos partidos a mitad de oración
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, html
+
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+
+          pat=re.compile(
+              r'(?P<open><p(?:\s+[^>]*)?>)(?P<a>.*?)</p>\s*<p>(?P<b>.*?)</p>',
+              re.S
+          )
+
+          total=0
+          while True:
+              changed=0
+              def clean_text(x):
+                  x=re.sub(r'<[^>]+>',' ',x)
+                  return ' '.join(html.unescape(x).split())
+              def repl(m):
+                  nonlocal_changed = None
+                  a=clean_text(m.group('a'))
+                  b=clean_text(m.group('b'))
+                  if a and b and a[-1] not in '.?!:;”"»)' and b[0].islower():
+                      nonlocal_holder[0]+=1
+                      return m.group('open') + m.group('a').rstrip() + ' ' + m.group('b').lstrip() + '</p>'
+                  return m.group(0)
+
+              nonlocal_holder=[0]
+              ns=pat.sub(repl,s)
+              changed=nonlocal_holder[0]
+              total+=changed
+              s=ns
+              if changed==0:
+                  break
+
+          if total < 15:
+              raise SystemExit(f'Se esperaban al menos 15 cortes; corregidos: {total}')
+
+          # Verificación: no deben quedar cortes inequívocos de oración entre párrafos.
+          leftovers=[]
+          for m in pat.finditer(s):
+              a=re.sub(r'<[^>]+>',' ',m.group('a'))
+              b=re.sub(r'<[^>]+>',' ',m.group('b'))
+              a=' '.join(html.unescape(a).split())
+              b=' '.join(html.unescape(b).split())
+              if a and b and a[-1] not in '.?!:;”"»)' and b[0].islower():
+                  leftovers.append((a[-80:],b[:80]))
+          if leftovers:
+              raise SystemExit(f'Persisten cortes: {leftovers[:3]}')
+
+          p.write_text(s,encoding='utf-8')
+          print('Cortes corregidos:',total)
+          PY
+          git diff --check
+
+      - name: Guardar correcciones
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git commit -m 'fix: unir parrafos partidos en movil'
+          git push origin HEAD:correccion-parrafos-movil-2026
