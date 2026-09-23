@@ -372,6 +372,11 @@
         border: 2px solid #25a994;
         background: #edf9f7;
         color: #0a5b50;
+        font-weight: 450;
+        line-height: 1.65;
+      }
+      .marker.case::first-line {
+        font-weight: 850;
       }
       .dark .marker.case {
         background: #102c2b;
@@ -841,16 +846,38 @@
           padding: 38px 18px;
         }
         .chapter-head {
-          padding: 14px 12px 14px 68px;
+          top: 0;
+          min-height: 64px;
+          padding: 9px 10px 9px 62px;
+          gap: 8px;
         }
         .chapter-no {
           display: none;
         }
         .chapter-head h2 {
-          font-size: 20px;
+          font-size: 17px;
+          line-height: 1.12;
+          max-width: calc(100vw - 126px);
         }
         .chapter-head span {
-          font-size: 10px;
+          display: none;
+        }
+        .complete-btn {
+          width: 36px;
+          height: 36px;
+          flex: 0 0 36px;
+        }
+        .menu {
+          left: 10px;
+          top: 10px;
+          width: 42px;
+          height: 42px;
+        }
+        .chapter,
+        .content,
+        .chapter-body h3,
+        .chapter-body h4 {
+          scroll-margin-top: 76px;
         }
         .smart {
           grid-template-columns: 1fr;
@@ -1351,27 +1378,25 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Panadería La Espiga: de negocio familiar a
-            operación con tres sucursales La Espiga nació hace veinte años como
-            una panadería familiar en el centro de Hidalgo del Parral. Durante
-            quince años, don Refugio, su fundador, tomaba personalmente todas
-            las decisiones: compraba el trigo, horneaba, atendía el mostrador y
-            llevaba las cuentas en un cuaderno. Cuando la demanda creció y la
-            familia abrió una segunda y luego una tercera sucursal, don Refugio
-            empezó a notar que ya no podía estar en todos lados: los pedidos se
-            retrasaban, el inventario de harina se agotaba sin previo aviso en
-            una sucursal mientras sobraba en otra, y dos empleados nuevos no
-            sabían exactamente quién debía autorizar los descuentos a clientes
-            frecuentes. Su hija, recién egresada de Negocios Internacionales, le
-            propuso formalizar la
+                        operación con tres sucursales La Espiga nació hace veinte años como
+                        una panadería familiar en el centro de Hidalgo del Parral. Durante
+                        quince años, don Refugio, su fundador, tomaba personalmente todas
+                        las decisiones: compraba el trigo, horneaba, atendía el mostrador y
+                        llevaba las cuentas en un cuaderno. Cuando la demanda creció y la
+                        familia abrió una segunda y luego una tercera sucursal, don Refugio
+                        empezó a notar que ya no podía estar en todos lados: los pedidos se
+                        retrasaban, el inventario de harina se agotaba sin previo aviso en
+                        una sucursal mientras sobraba en otra, y dos empleados nuevos no
+                        sabían exactamente quién debía autorizar los descuentos a clientes
+                        frecuentes. Su hija, recién egresada de Negocios Internacionales, le
+                        propuso formalizar la
+                      administración del negocio: definir metas mensuales por sucursal
+                        (planear), asignar un encargado responsable en cada punto de venta
+                        (organizar), reunirse semanalmente con el equipo para escuchar
+                        problemas y motivar al personal (dirigir), y revisar cada viernes un
+                        reporte simple de ventas e inventario contra lo esperado
+                        (controlar).
           </div>
-          <p>
-            administración del negocio: definir metas mensuales por sucursal
-            (planear), asignar un encargado responsable en cada punto de venta
-            (organizar), reunirse semanalmente con el equipo para escuchar
-            problemas y motivar al personal (dirigir), y revisar cada viernes un
-            reporte simple de ventas e inventario contra lo esperado
-            (controlar).
-          </p>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
             1. ¿Qué función administrativa fallaba con mayor claridad antes de
@@ -1696,20 +1721,20 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · De la línea de ensamble al equipo autodirigido
-            en una maquiladora de Chihuahua Una planta maquiladora de autopartes
-            instalada en el parque industrial de Chihuahua capital operó durante
-            los años noventa bajo un esquema clásico de administración
-            científica: tiempos estandarizados por estación, supervisión
-            estrecha y pago por pieza. La rotación de personal era alta y los
-            empleados reportaban sentirse &#x27;como una pieza más de la
-            máquina&#x27;. A partir de 2015, la gerencia rediseñó parte de la
-            línea introduciendo células de trabajo con equipos semiautónomos de
-            seis a ocho operadores, responsables de rotar tareas entre sí,
-            resolver problemas de calidad en el momento y proponer mejoras al
-            proceso. La rotación de personal bajó de forma sostenida y los
-            indicadores de calidad mejoraron, aunque la gerencia mantuvo
-            estándares de tiempo similares a los originales de la administración
-            científica para las tareas más técnicas.
+                        en una maquiladora de Chihuahua Una planta maquiladora de autopartes
+                        instalada en el parque industrial de Chihuahua capital operó durante
+                        los años noventa bajo un esquema clásico de administración
+                        científica: tiempos estandarizados por estación, supervisión
+                        estrecha y pago por pieza. La rotación de personal era alta y los
+                        empleados reportaban sentirse &#x27;como una pieza más de la
+                        máquina&#x27;. A partir de 2015, la gerencia rediseñó parte de la
+                        línea introduciendo células de trabajo con equipos semiautónomos de
+                        seis a ocho operadores, responsables de rotar tareas entre sí,
+                        resolver problemas de calidad en el momento y proponer mejoras al
+                        proceso. La rotación de personal bajó de forma sostenida y los
+                        indicadores de calidad mejoraron, aunque la gerencia mantuvo
+                        estándares de tiempo similares a los originales de la administración
+                        científica para las tareas más técnicas.
           </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
@@ -2034,21 +2059,21 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Una autopartes de Parral frente al nearshoring:
-            oportunidad y presión simultáneas Componentes Industriales del
-            Parral (nombre ficticio con base en casos reales del sector) es un
-            proveedor de segundo nivel para la industria automotriz que durante
-            quince años surtió piezas metálicas a una sola planta ensambladora.
-            A partir de 2023, tres nuevos clientes potenciales —empresas que
-            relocalizaron operaciones desde Asia hacia el norte de México— se
-            acercaron a la compañía buscando proveedores locales certificados.
-            El dueño-administrador enfrentó un dilema clásico de análisis del
-            entorno: el aumento de la demanda (entorno de tarea favorable)
-            coincidió con nuevas exigencias regulatorias de contenido regional
-            bajo el T-MEC y con escasez de mano de obra técnica calificada en la
-            región (entorno general desafiante). Debió decidir si expandía
-            capacidad instalada de inmediato o esperaba confirmar contratos
-            firmados, sabiendo que sus competidores directos enfrentaban la
-            misma disyuntiva.
+                        oportunidad y presión simultáneas Componentes Industriales del
+                        Parral (nombre ficticio con base en casos reales del sector) es un
+                        proveedor de segundo nivel para la industria automotriz que durante
+                        quince años surtió piezas metálicas a una sola planta ensambladora.
+                        A partir de 2023, tres nuevos clientes potenciales —empresas que
+                        relocalizaron operaciones desde Asia hacia el norte de México— se
+                        acercaron a la compañía buscando proveedores locales certificados.
+                        El dueño-administrador enfrentó un dilema clásico de análisis del
+                        entorno: el aumento de la demanda (entorno de tarea favorable)
+                        coincidió con nuevas exigencias regulatorias de contenido regional
+                        bajo el T-MEC y con escasez de mano de obra técnica calificada en la
+                        región (entorno general desafiante). Debió decidir si expandía
+                        capacidad instalada de inmediato o esperaba confirmar contratos
+                        firmados, sabiendo que sus competidores directos enfrentaban la
+                        misma disyuntiva.
           </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
@@ -2374,22 +2399,22 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Vinos del Valle de Parral: planear una expansión
-            sin perder el control del negocio Vinos del Valle es una pequeña
-            vinícola familiar cercana a Hidalgo del Parral que, tras ganar
-            reconocimiento regional, recibió la propuesta de distribuir su
-            producto en tres ciudades adicionales del estado. La propietaria,
-            entusiasmada, estuvo a punto de firmar el acuerdo de distribución
-            sin calcular si su capacidad de producción actual podría sostener la
-            demanda proyectada ni cómo financiaría el inventario adicional. Un
-            asesor le sugirió, antes de firmar, elaborar un plan estratégico
-            simple a tres años (objetivo de participación de mercado),
-            desglosarlo en un plan táctico anual (metas de producción por
-            trimestre) y en un plan operativo mensual (calendario de cosecha,
-            embotellado y distribución), acompañado de un presupuesto de flujo
-            de efectivo. Al hacerlo, la propietaria descubrió que necesitaría
-            una línea de crédito puente durante los primeros seis meses para
-            cubrir el desfase entre la producción y el cobro a los nuevos
-            distribuidores.
+                        sin perder el control del negocio Vinos del Valle es una pequeña
+                        vinícola familiar cercana a Hidalgo del Parral que, tras ganar
+                        reconocimiento regional, recibió la propuesta de distribuir su
+                        producto en tres ciudades adicionales del estado. La propietaria,
+                        entusiasmada, estuvo a punto de firmar el acuerdo de distribución
+                        sin calcular si su capacidad de producción actual podría sostener la
+                        demanda proyectada ni cómo financiaría el inventario adicional. Un
+                        asesor le sugirió, antes de firmar, elaborar un plan estratégico
+                        simple a tres años (objetivo de participación de mercado),
+                        desglosarlo en un plan táctico anual (metas de producción por
+                        trimestre) y en un plan operativo mensual (calendario de cosecha,
+                        embotellado y distribución), acompañado de un presupuesto de flujo
+                        de efectivo. Al hacerlo, la propietaria descubrió que necesitaría
+                        una línea de crédito puente durante los primeros seis meses para
+                        cubrir el desfase entre la producción y el cobro a los nuevos
+                        distribuidores.
           </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
@@ -2706,21 +2731,21 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Ferretería Hidalgo: decidir bajo incertidumbre
-            si diversificar el inventario Ferretería Hidalgo, un negocio
-            familiar de tres generaciones en el centro de Parral, enfrentó en
-            2024 la llegada de una cadena regional de tiendas de mejoras para el
-            hogar a pocas cuadras de su local. El dueño debía decidir, con
-            información incompleta sobre el impacto real que tendría el nuevo
-            competidor, si mantenía su mezcla tradicional de productos, si se
-            especializaba en un nicho (herramienta industrial para talleres) o
-            si invertía en diversificar hacia productos de jardinería y
-            decoración. Presionado por el tiempo y sin recursos para un estudio
-            de mercado formal, el dueño optó por una decisión
-            &#x27;satisfaciente&#x27;: habló con quince clientes frecuentes en
-            dos semanas, identificó que la mayoría eran talleres mecánicos y de
-            soldadura, y decidió especializarse en herramienta industrial, sin
-            explorar exhaustivamente todas las alternativas posibles de
-            diversificación.
+                        si diversificar el inventario Ferretería Hidalgo, un negocio
+                        familiar de tres generaciones en el centro de Parral, enfrentó en
+                        2024 la llegada de una cadena regional de tiendas de mejoras para el
+                        hogar a pocas cuadras de su local. El dueño debía decidir, con
+                        información incompleta sobre el impacto real que tendría el nuevo
+                        competidor, si mantenía su mezcla tradicional de productos, si se
+                        especializaba en un nicho (herramienta industrial para talleres) o
+                        si invertía en diversificar hacia productos de jardinería y
+                        decoración. Presionado por el tiempo y sin recursos para un estudio
+                        de mercado formal, el dueño optó por una decisión
+                        &#x27;satisfaciente&#x27;: habló con quince clientes frecuentes en
+                        dos semanas, identificó que la mayoría eran talleres mecánicos y de
+                        soldadura, y decidió especializarse en herramienta industrial, sin
+                        explorar exhaustivamente todas las alternativas posibles de
+                        diversificación.
           </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
@@ -3057,21 +3082,21 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Maderas del Parral: de la estructura simple a la
-            estructura funcional Maderas del Parral inició hace doce años como
-            un taller de carpintería con cuatro empleados que reportaban
-            directamente al fundador. Al cumplir treinta y cinco empleados y
-            abrir una línea de mueblería por encargo además del taller original,
-            el fundador seguía tratando de aprobar personalmente cada compra de
-            material, cada diseño y cada contratación, lo que generaba retrasos
-            crecientes y decisiones inconsistentes entre el taller y la línea de
-            mueblería. Un consultor recomendó crear una estructura funcional
-            formal con tres áreas — producción, diseño y ventas— cada una con un
-            responsable que reportara al fundador, y delegar la autorización de
-            compras rutinarias por debajo de un monto determinado. El fundador
-            conservó la autoridad de línea sobre los tres responsables de área,
-            mientras que contrató a un contador externo con autoridad de staff
-            para asesorar en materia fiscal, sin mando directo sobre el personal
-            operativo.
+                        estructura funcional Maderas del Parral inició hace doce años como
+                        un taller de carpintería con cuatro empleados que reportaban
+                        directamente al fundador. Al cumplir treinta y cinco empleados y
+                        abrir una línea de mueblería por encargo además del taller original,
+                        el fundador seguía tratando de aprobar personalmente cada compra de
+                        material, cada diseño y cada contratación, lo que generaba retrasos
+                        crecientes y decisiones inconsistentes entre el taller y la línea de
+                        mueblería. Un consultor recomendó crear una estructura funcional
+                        formal con tres áreas — producción, diseño y ventas— cada una con un
+                        responsable que reportara al fundador, y delegar la autorización de
+                        compras rutinarias por debajo de un monto determinado. El fundador
+                        conservó la autoridad de línea sobre los tres responsables de área,
+                        mientras que contrató a un contador externo con autoridad de staff
+                        para asesorar en materia fiscal, sin mando directo sobre el personal
+                        operativo.
           </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
@@ -3408,21 +3433,21 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Taller Mecánico Ríos: un líder autocrático
-            frente a una nueva generación de mecánicos Don Ríos dirigió durante
-            veinticinco años su taller mecánico en Hidalgo del Parral con un
-            estilo claramente autocrático: él decidía cada reparación, cada
-            precio y cada horario, y esperaba que sus empleados siguieran
-            instrucciones sin cuestionarlas. Este estilo funcionó bien durante
-            años con un equipo de mecánicos empíricos, poco capacitados
-            formalmente, que valoraban la claridad de instrucciones. Al
-            contratar a dos jóvenes mecánicos recién certificados por un centro
-            técnico, don Ríos notó que ambos se frustraban con la falta de
-            autonomía y consideraban irse a un taller de la competencia que les
-            ofrecía participar en decisiones sobre diagnóstico y en la elección
-            de refacciones. Además del salario competitivo, ambos mencionaron
-            que valoraban &#x27;que se les reconociera cuando resolvían un
-            problema difícil&#x27; y &#x27;poder proponer mejoras al proceso de
-            recepción de vehículos&#x27;.
+                        frente a una nueva generación de mecánicos Don Ríos dirigió durante
+                        veinticinco años su taller mecánico en Hidalgo del Parral con un
+                        estilo claramente autocrático: él decidía cada reparación, cada
+                        precio y cada horario, y esperaba que sus empleados siguieran
+                        instrucciones sin cuestionarlas. Este estilo funcionó bien durante
+                        años con un equipo de mecánicos empíricos, poco capacitados
+                        formalmente, que valoraban la claridad de instrucciones. Al
+                        contratar a dos jóvenes mecánicos recién certificados por un centro
+                        técnico, don Ríos notó que ambos se frustraban con la falta de
+                        autonomía y consideraban irse a un taller de la competencia que les
+                        ofrecía participar en decisiones sobre diagnóstico y en la elección
+                        de refacciones. Además del salario competitivo, ambos mencionaron
+                        que valoraban &#x27;que se les reconociera cuando resolvían un
+                        problema difícil&#x27; y &#x27;poder proponer mejoras al proceso de
+                        recepción de vehículos&#x27;.
           </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
@@ -3738,21 +3763,21 @@
           </p>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Confecciones Parral: cuando el rumor de pasillo
-            se adelantó al anuncio oficial Confecciones Parral, una empresa
-            mediana de manufactura textil, decidió reorganizar dos líneas de
-            producción para responder a un nuevo pedido de exportación. La
-            gerencia trabajó el plan de forma confidencial durante tres semanas,
-            sin comunicar nada al personal operativo hasta tenerlo completamente
-            definido. Durante ese periodo, rumores sobre &#x27;posibles
-            despidos&#x27; circularon en la planta, generando ansiedad y una
-            caída notable en la asistencia y en la productividad, a pesar de que
-            la reorganización en realidad implicaba contratar más personal, no
-            despedirlo. Cuando finalmente se comunicó el plan real en una
-            reunión general, varios empleados expresaron desconfianza: &#x27;si
-            esto era una buena noticia, ¿por qué se mantuvo en secreto tanto
-            tiempo?&#x27;. La gerencia tuvo que invertir semanas adicionales
-            reconstruyendo la confianza del personal, principalmente a través de
-            reuniones semanales breves de comunicación ascendente y descendente.
+                        se adelantó al anuncio oficial Confecciones Parral, una empresa
+                        mediana de manufactura textil, decidió reorganizar dos líneas de
+                        producción para responder a un nuevo pedido de exportación. La
+                        gerencia trabajó el plan de forma confidencial durante tres semanas,
+                        sin comunicar nada al personal operativo hasta tenerlo completamente
+                        definido. Durante ese periodo, rumores sobre &#x27;posibles
+                        despidos&#x27; circularon en la planta, generando ansiedad y una
+                        caída notable en la asistencia y en la productividad, a pesar de que
+                        la reorganización en realidad implicaba contratar más personal, no
+                        despedirlo. Cuando finalmente se comunicó el plan real en una
+                        reunión general, varios empleados expresaron desconfianza: &#x27;si
+                        esto era una buena noticia, ¿por qué se mantuvo en secreto tanto
+                        tiempo?&#x27;. La gerencia tuvo que invertir semanas adicionales
+                        reconstruyendo la confianza del personal, principalmente a través de
+                        reuniones semanales breves de comunicación ascendente y descendente.
           </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
@@ -4091,29 +4116,25 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Textiles del Norte: implementar un tablero de
-            control sin ahogar al equipo en reportes Textiles del Norte, una
-            maquiladora de prendas de vestir en Chihuahua, atravesó en
-          </div>
-          <p>
-            2023 un periodo de quejas crecientes de sus clientes internacionales
-            por defectos de
-          </p>
-          <p>
+                        control sin ahogar al equipo en reportes Textiles del Norte, una
+                        maquiladora de prendas de vestir en Chihuahua, atravesó en
+                      2023 un periodo de quejas crecientes de sus clientes internacionales
+                        por defectos de
             costura y retrasos en la entrega. La gerencia respondió creando de
-            golpe veintidós indicadores distintos que cada supervisor de línea
-            debía reportar diariamente por escrito, generando tal carga
-            administrativa que los supervisores dedicaban más tiempo a llenar
-            formatos que a supervisar la producción, y la calidad no mejoró. Un
-            consultor externo ayudó a la gerencia a reducir el sistema a cuatro
-            KPI verdaderamente críticos —porcentaje de piezas defectuosas por
-            línea, tiempo de ciclo, cumplimiento de fecha de entrega y
-            ausentismo— visibles en un tablero físico simple actualizado cada
-            turno, combinado con inspecciones preventivas de tela antes de
-            iniciar cada lote (control preventivo) y revisiones aleatorias
-            durante la costura (control concurrente), en lugar de depender solo
-            de la inspección final del producto terminado (control de
-            retroalimentación).
-          </p>
+                        golpe veintidós indicadores distintos que cada supervisor de línea
+                        debía reportar diariamente por escrito, generando tal carga
+                        administrativa que los supervisores dedicaban más tiempo a llenar
+                        formatos que a supervisar la producción, y la calidad no mejoró. Un
+                        consultor externo ayudó a la gerencia a reducir el sistema a cuatro
+                        KPI verdaderamente críticos —porcentaje de piezas defectuosas por
+                        línea, tiempo de ciclo, cumplimiento de fecha de entrega y
+                        ausentismo— visibles en un tablero físico simple actualizado cada
+                        turno, combinado con inspecciones preventivas de tela antes de
+                        iniciar cada lote (control preventivo) y revisiones aleatorias
+                        durante la costura (control concurrente), en lugar de depender solo
+                        de la inspección final del producto terminado (control de
+                        retroalimentación).
+          </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
             1. ¿Qué principio del capítulo explica por qué el primer sistema de
@@ -4441,24 +4462,24 @@
           </div>
           <div class="marker case">
             🏭 CASO CHIHUAHUA · Curtidos de Chihuahua: crecer para exportar sin
-            comprometer los principios Curtidos de Chihuahua, una curtiduría
-            familiar de tercera generación, recibió la oportunidad de firmar un
-            contrato de exportación significativo con una marca internacional de
-            calzado, condicionado a certificar su manejo de residuos químicos
-            del proceso de curtido conforme a estándares internacionales.
-            Cumplir la certificación exigía una inversión considerable en una
-            planta de tratamiento de aguas residuales, que reduciría el margen
-            de utilidad del contrato durante los primeros dos años. El director
-            general, tercera generación de la familia fundadora, enfrentó
-            presión de un socio minoritario para &#x27;cumplir el mínimo legal
-            mexicano&#x27;, más laxo que el estándar exigido por el cliente
-            internacional, y usar el ahorro para expandir capacidad de
-            producción de inmediato. El director general decidió, en cambio,
-            invertir en la planta de tratamiento completa desde el inicio,
-            argumentando que el negocio dependía de la confianza de largo plazo
-            de clientes internacionales cada vez más exigentes en materia
-            ambiental, y que un incumplimiento futuro pondría en riesgo no solo
-            ese contrato sino la reputación de la empresa en la industria.
+                        comprometer los principios Curtidos de Chihuahua, una curtiduría
+                        familiar de tercera generación, recibió la oportunidad de firmar un
+                        contrato de exportación significativo con una marca internacional de
+                        calzado, condicionado a certificar su manejo de residuos químicos
+                        del proceso de curtido conforme a estándares internacionales.
+                        Cumplir la certificación exigía una inversión considerable en una
+                        planta de tratamiento de aguas residuales, que reduciría el margen
+                        de utilidad del contrato durante los primeros dos años. El director
+                        general, tercera generación de la familia fundadora, enfrentó
+                        presión de un socio minoritario para &#x27;cumplir el mínimo legal
+                        mexicano&#x27;, más laxo que el estándar exigido por el cliente
+                        internacional, y usar el ahorro para expandir capacidad de
+                        producción de inmediato. El director general decidió, en cambio,
+                        invertir en la planta de tratamiento completa desde el inicio,
+                        argumentando que el negocio dependía de la confianza de largo plazo
+                        de clientes internacionales cada vez más exigentes en materia
+                        ambiental, y que un incumplimiento futuro pondría en riesgo no solo
+                        ese contrato sino la reputación de la empresa en la industria.
           </div>
           <div class="marker questions">💬 Preguntas de análisis</div>
           <p class="objective">
